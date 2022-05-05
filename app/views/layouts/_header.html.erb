@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <%= link_to "NEAR Greeter", root_path, class: "navbar-brand me-auto", id: "logo" %>
+    <%= link_to "Roketo NEAR", root_path, class: "navbar-brand me-auto", id: "logo" %>
 
     <button
       class="navbar-toggler bg-light"
@@ -35,7 +35,47 @@
           </div>
         </li>
 
-        <%# Search bar is deprecated. %>
+        <li class="nav-item">
+          <div data-controller="nav">
+            <div class="dropdown" data-nav-target="dropdown">
+              <button class="navbar-toggler"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#navbarSelector"
+                      aria-controls="navbarSelector"
+                      aria-expanded="false"
+                      aria-label="Toggle navigation"
+              >
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+              <div class="collapse navbar-collapse" id="navbarSelector">
+                <ul class="navbar-nav" data-controller="nav">
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" 
+                        href="#" 
+                        id="navbarSelectorInner" 
+                        role="button" 
+                        data-bs-toggle="dropdown" 
+                        aria-expanded="false"
+                    >
+                    Menu
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" 
+                        aria-labelledby="navbarSelectorInner"
+                    >
+                      <li><%= link_to "Freelancer", "#", class: "dropdown-item" %></li>
+                      <li><%= link_to "Hirer", "#", class: "dropdown-item" %></li>
+                      <li><%= link_to "Search for Freelancers", "#", class: "dropdown-item" %></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+        </li>
       </ul>
 
     </div>
