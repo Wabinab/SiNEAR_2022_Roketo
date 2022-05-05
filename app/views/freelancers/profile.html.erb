@@ -1,0 +1,66 @@
+<% define_constants %>
+
+<div class="container-md bg-success bg-opacity-10">
+  <div class="row pt-3 pb-3">
+    <div class="col text-center">
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.account_id %>
+      </h1>
+    </div>
+  </div>
+</div>
+
+
+<%# change to pb-3 later %>
+<div class="container-md pb-6 pt-3">  
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="define-work-tab" data-bs-toggle="tab" 
+          data-bs-target="#define-work" type="button" role="tab" aria-controls="define-work" 
+          aria-selected="true">Define Work</button>
+    </li>
+
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="active-work-tab" data-bs-toggle="tab" 
+      data-bs-target="#active-work" type="button" role="tab" aria-controls="active-work" 
+      aria-selected="false">Active Work</button>
+    </li>
+  </ul>
+
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="define-work" 
+        role="tabpanel" aria-labelledby="define-work-tab"
+    >
+      <div class="row">
+        <div class="d-flex align-items-center justify-content-center pt-5">
+
+          <%# Start card %>
+          <div class="card" style="width: 26rem;">
+            <div class="card-body">
+              <h1 class="card-title text-center">
+                Define Yourself
+              </h1>
+              <br>
+
+              <div class="card-text">
+                <%# model to be changed to another? %>
+                <%= form_with(model: @user, local: true, data: { turbo: false}) do |f|%>
+                  
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <%# Finish card %>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="active-work" role="tabpanel" 
+      aria-labelledby="active-work-tab"
+    >
+      Other thing
+    </div>
+  </div>
+</div>
