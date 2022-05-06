@@ -1,0 +1,50 @@
+<% define_constants %>
+<% @user = User.new  %>
+<% @user.account_id = params[:account_id].gsub("-", ".") %>
+
+<div class="container-md bg-warning bg-opacity-10">
+  <div class="row pt-3 pb-3">
+    <div class="col text-center">
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.account_id %>
+      </h1>
+    </div>
+  </div>
+</div>
+
+<div class="container-md pb-3 pt-3">  
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="define-work-tab" data-bs-toggle="tab" 
+      data-bs-target="#define-work" type="button" role="tab" aria-controls="define-work" 
+      aria-selected="true">
+        Active
+      </button>
+    </li>
+
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="pending-work-tab" data-bs-toggle="tab"
+      data-bs-target="#pending-work" type="button" role="tab" aria-controls="pending-work"
+      aria-selected="false">
+        Pending
+      </button>
+    </li>
+
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="active-work-tab" data-bs-toggle="tab" 
+      data-bs-target="#active-work" type="button" role="tab" aria-controls="active-work" 
+      aria-selected="false">
+        Done
+      </button>
+    </li>
+  </ul>
+
+  <div class="tab-content" id="myTabContent">
+    <%= render 'hirers/active_work' %>
+    <%= render 'hirers/pending_work' %>
+    <%= render 'hirers/done_work' %>
+  </div>
+
+</div>
+

@@ -1,7 +1,7 @@
 class FreelancersController < ApplicationController
   def profile
-    @user = User.new 
-    @user.account_id = search_params[:account_id].gsub('-', '.')
+    # @user = User.new 
+    # @user.account_id = search_params[:account_id].gsub('-', '.')
   end
 
   def create

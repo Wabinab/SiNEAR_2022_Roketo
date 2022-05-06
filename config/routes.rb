@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  # get 'freelancers/profile'
   get 'home', to: 'static_pages#home'
 
   get 'users', to: 'users#new'
@@ -8,6 +7,8 @@ Rails.application.routes.draw do
 
   get 'freelancers/:account_id', to: 'freelancers#profile'
   post 'freelancers/:account_id', to: 'freelancers#create'
+
+  get 'hirers/:account_id', to: 'hirers#profile'
 
   root 'static_pages#home'
 
