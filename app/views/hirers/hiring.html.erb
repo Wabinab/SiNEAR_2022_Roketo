@@ -1,0 +1,29 @@
+<% define_constants %>
+
+<div class="row gap-3 pt-5 pb-3">
+  <div class="d-flex align-items-center justify-content-center">
+    <div class="card" style="width: 26rem;">
+      <%# Add image later %>
+      <%= image_tag "https://randomwordgenerator.com/img/picture-generator/54e8d7474f52ac14f1dc8460962e33791c3ad6e04e507441722a72dc9545c2_640.jpg" %>
+
+      <div class="card-body">
+        <h4 class="card-title"><%= @freelancer.account_id %></h4>
+        <h5 class="card-subtitle text-danger"><%= @freelancer.price_per_hour %> NEAR</h5>
+        <p class="card-text"><%= @freelancer.message %></p>
+      </div>
+    </div>
+  </div>
+
+  <%= link_to "Bookmark", "#", class: "btn btn-primary btn-lg col-4 mx-auto" %>
+  <a class="btn btn-success btn-lg col-4 mx-auto"
+      data-bs-toggle="collapse" 
+      href="#collapseExample" 
+      role="button" 
+      aria-expanded="false" 
+      aria-controls="collapseExample"
+  >
+    Hire
+  </a>
+
+  <%= render 'hirers/hire_now' %>
+</div>

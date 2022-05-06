@@ -1,0 +1,17 @@
+<div class="collapse" id="collapseExample">
+  <div class="d-flex align-items-center justify-content-center">
+    <%= form_with(model: @user, remote: true, data: { turbo: false }) do |f| %>
+      <%= f.label "Total Payment (in NEAR):" %>
+      <%= f.text_field "", class: "form-control", id: "amount" %>
+
+      <%# Owner_id is the signer, so we can detect there. %>
+      <%= f.hidden_field "", value: @freelancer.account_id.gsub('-', '.'), id: "receiver_id" %>
+      <%= f.hidden_field "", value: convert_to_tps(@freelancer.price_per_hour), 
+          id: "tokens_per_sec"  %>
+
+      <div class="p-3 text-center">
+        <%= link_to "Submit", "javascript:create_stream()", class: "btn btn-outline-success" %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -4,6 +4,10 @@ class FreelancersController < ApplicationController
     # @user.account_id = search_params[:account_id].gsub('-', '.')
   end
 
+  def index
+    redirect_to profile_path
+  end
+
   def create
     @freelancer = Freelancer.new(freelancer_params)
 
