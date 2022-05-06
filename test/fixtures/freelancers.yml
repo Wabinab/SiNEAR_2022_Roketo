@@ -1,0 +1,16 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+freelancer:
+  account_id: freelancer-testnet
+  message: I am a NEAR developer for hire!
+  price_per_hour: 1
+
+# one:
+#   account_id: MyString
+#   message: MyString
+#   price_per_hour: MyString
+
+# two:
+#   account_id: MyString
+#   message: MyString
+#   price_per_hour: MyString

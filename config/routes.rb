@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post 'users', to: 'users#create'
 
   get 'freelancers/:account_id', to: 'freelancers#profile'
+  post 'freelancers/:account_id', to: 'freelancers#create'
 
   root 'static_pages#home'
 
