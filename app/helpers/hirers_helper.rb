@@ -5,7 +5,8 @@ module HirersHelper
 
     # Count the number of decimals
     # https://stackoverflow.com/questions/8597766/how-to-count-the-number-of-decimal-places-in-a-float
-    decimal = price_per_hour.to_s.split('.').last.size 
+    decimal = price_per_hour.to_s.split('.').last.size
+    decimal = 10.pow(decimal)
 
     price_int = (price_per_hour * decimal).to_i * one_near / decimal
     price_int / second_per_hour
