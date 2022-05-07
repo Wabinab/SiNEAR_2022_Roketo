@@ -1,5 +1,6 @@
 import { connect, Contract, keyStores, WalletConnection, utils } from 'near-api-js';
 import getConfig from './config.js';
+import Big from 'big-js';
 
 
 const nearConfig = getConfig('development', 'streaming-r-v2.dcversus.testnet')
@@ -11,8 +12,10 @@ const near2 = await connect(Object.assign({ deps: { keyStore: new keyStores.Brow
 window.nearConfig = nearConfig
 window.near = near
 
-window.nearCOnfig2 = nearConfig2
+window.nearConfig2 = nearConfig2
 window.near2 = near2
+
+window.Big = Big;
 
 window.walletConnection = new WalletConnection(near)
 window.accountId = window.walletConnection.getAccountId()
@@ -36,10 +39,11 @@ function login() {
 }
 
 
-function create_stream() {
+function create_stream(tokens_per_sec) {
   var amount = document.getElementById("amount").value;
+  var description = document.getElementById("description").value;
   var receiver_id = document.getElementById("receiver_id").value;
-  var tokens_per_sec = parseInt(document.getElementById("tokens_per_sec").value);
+  // var tokens_per_sec = Big(document.getElementById("tokens_per_sec").value).toFixed();
 
   var amount_parsed = utils.format.parseNearAmount(amount);
 
@@ -52,7 +56,8 @@ function create_stream() {
           request: {
             "owner_id": window.walletConnection.getAccountId(),
             "receiver_id": receiver_id,
-            "tokens_per_sec": tokens_per_sec
+            "tokens_per_sec": tokens_per_sec,
+            "description": description
           }
         }
       }),
@@ -68,20 +73,45 @@ function create_stream() {
 }
 
 
-function set_greeting() {
-  var message = document.getElementById("form_message").value;
-  window.contract.set_greeting({"message": message})
-  .then(
-    value => {
-      alert("Successful set_greeting for yourself.");
-      window.location.reload();
+function start_stream(stream_id) {
+  // var stream_id = document.getElementById("stream_id").value;
+
+  window.contract.start_stream(
+    {
+      "stream_id": stream_id
     },
-    err => alert(err),
+    200000000000000,  // 200 TGas
+    1
   );
 }
 
 
-window.parse_near = utils.format.parseNearAmount
+function pause_stream(stream_id) {
+  window.contract.pause_stream(
+    {
+      "stream_id": stream_id
+    },
+    200000000000000, // 200 TGas
+    1
+  );
+}
+
+
+function stop_stream(stream_id) {
+  window.contract.stop_stream(
+    {
+      "stream_id": stream_id
+    },
+    200000000000000, // 200 TGas
+    1
+  );
+}
+
+
+
 window.create_stream = create_stream
+window.start_stream = start_stream
+window.pause_stream = pause_stream
+window.stop_stream = stop_stream
 window.logout = logout
 window.login = login

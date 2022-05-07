@@ -11,4 +11,28 @@ module HirersHelper
     price_int = (price_per_hour * decimal).to_i * one_near / decimal
     price_int / second_per_hour
   end
+
+  def get_active_hirers(account_id)
+    query_function(
+      @contract,
+      'get_account_outgoing_streams',
+      {
+        "account_id": account_id,
+        "from": 0,
+        "limit": 100
+      }
+    )
+  end
+
+  def get_stream(stream_id)
+    query_function(
+      @contract,
+      'get_stream',
+      {
+        "stream_id": stream_id
+      }
+    )
+  end
+
+  
 end

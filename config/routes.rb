@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   get 'hirers/:account_id', to: 'hirers#profile'
   get 'hiring/:account_id', to: 'hirers#hiring'
+  get 'cards/:stream_id', to: 'hirers#cards'
 
   get 'searches', to: "searches#search"
 

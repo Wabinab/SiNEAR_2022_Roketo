@@ -1,0 +1,44 @@
+<% define_constants %>
+<% @token_info = get_stream params["stream_id"] %>
+
+<div class="row">
+  <div class="col text-center">
+    <h1><%= @token_info["receiver_id"] %></h1>
+    <h3>Stream ID: <%= params["stream_id"] %></h3>
+    
+  </div>
+</div>
+
+<div class="row gap-3 pt-3 pb-3">
+  <div class="d-flex align-items-center justify-content-center">
+    <div class="card" style="width: 26rem;">
+      <div class="card-body">
+        <p>Note: Only updates once you pause and start stream.</p>
+        <h3 class="card-title text-info text-center pt-3">
+          Balance: <%= yocto_to_near @token_info["balance"] %>
+        </h3>
+
+        <h4 class="card-subtitle text-primary text-center pt-3 pb-3">
+          Tokens per second: 
+          <%= yocto_to_near(@token_info["tokens_per_sec"], 5) %>
+        </h4>
+
+        <h5 class="card-subtitle <%= color_by_status(@token_info['status']) %> text-center">
+          Status: <%= @token_info["status"] %>
+        </h5>
+
+        <%# Disable buttons depending on status %>
+        <div class="text-center p-4 px-2 gap-3">
+          <%= link_to "Start", "javascript:start_stream('#{params["stream_id"]}')", class: "btn btn-success" %>
+          <%= link_to "Pause", "javascript:pause_stream('#{params["stream_id"]}')", class: "btn btn-warning" %>
+
+          <%# Freelancer cannot see stop button. %>
+          <%= link_to "Stop", "javascript:stop_stream('#{params["stream_id"]}')",  class: "btn btn-danger " %>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
