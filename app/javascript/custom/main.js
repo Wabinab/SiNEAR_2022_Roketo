@@ -5,9 +5,12 @@ import Big from 'big-js';
 
 const nearConfig = getConfig('development', 'streaming-r-v2.dcversus.testnet')
 const nearConfig2 = getConfig('development', 'wrap.testnet')
+const nearConfig3 = getConfig('development', 'roketo_helper.wabinab.testnet')
 
 const near = await connect(Object.assign({ deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() } }, nearConfig));
 const near2 = await connect(Object.assign({ deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() } }, nearConfig2));
+const near3 = await connect(Object.assign({ deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() } }, nearConfig3));
+
 
 window.nearConfig = nearConfig
 window.near = near
@@ -15,7 +18,8 @@ window.near = near
 window.nearConfig2 = nearConfig2
 window.near2 = near2
 
-window.Big = Big;
+window.nearConfig3 = nearConfig3
+window.near3 = near3
 
 window.walletConnection = new WalletConnection(near)
 window.accountId = window.walletConnection.getAccountId()
@@ -25,7 +29,12 @@ window.wrap_contract = await new Contract(window.walletConnection.account(), nea
 })
 
 window.contract = await new Contract(window.walletConnection.account(), nearConfig.contractName, {
+  viewMethods: ['get_stream'],
   changeMethods: ['start_stream', 'pause_stream', 'stop_stream'],
+})
+
+window.helper_contract = await new Contract(window.walletConnection.account(), nearConfig3.contractName, {
+  changeMethods: ['stop_by_owner'],
 })
 
 

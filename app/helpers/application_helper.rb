@@ -24,7 +24,22 @@ module ApplicationHelper
   def yocto_to_near(yoctonear, decimal=3)
     one_decimal = ("1" + "0" * (24 - decimal)).to_i
     mNEAR = yoctonear.to_i / one_decimal
-    mNEAR.to_f / ("1" + "0" * decimal).to_i
+
+
+    # mNEAR.to_f / ("1" + "0" * decimal).to_i
+    #  If you don't mind scientific notation, cancel everything below
+    # and activate the line above. 
+
+    first_n = (mNEAR.to_i / ("1" + "0" * decimal).to_i).to_s
+    first_n ||= "0"
+
+    last_n = mNEAR.to_s
+    last_n ||= "0"
+    if last_n.length < decimal
+      last_n = ("0" * (decimal - last_n.length)) + last_n
+    end
+
+    first_n + "." + last_n
   end
 
   def color_by_status(status)
