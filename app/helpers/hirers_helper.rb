@@ -34,5 +34,21 @@ module HirersHelper
     )
   end
 
-  
+  def get_balance(token_id, account_id)
+    query_function(
+      token_id,
+      'ft_balance_of',
+      {
+        "account_id": account_id
+      }
+    )
+  end
+
+  def get_token_metadata(token_id) 
+    query_function(
+      token_id,
+      'ft_metadata',
+      {}
+    )
+  end
 end

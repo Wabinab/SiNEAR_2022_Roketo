@@ -1,19 +1,35 @@
+<% @balance = yocto_to_near get_balance(@coin_contract, "wabinab.testnet") %>
+
 <div class="collapse" id="collapseExample">
   <div class="d-flex align-items-center justify-content-center">
     <%= form_with(model: @user, remote: true, data: { turbo: false }) do |f| %>
+      <div class="row g-3 align-items-center pb-3">
+        <div class="col-4">
+          Current Balance:
+        </div>
+        <div class="col-6" id="balance">
+          <%= @balance %>
+        </div>
+        <div class="col-auto">
+          <%= get_token_metadata(@coin_contract)["symbol"] %> 
+        </div>
+      </div>
+
       <%= f.label "Total Payment (in NEAR):" %>
-      <%= f.text_field "", class: "form-control", id: "amount" %>
+      <%= f.number_field "", in: 0.01..@balance.to_f, step: 0.01, 
+          class: "form-control", id: "amount" %>
 
       <%= f.label "Job description:" %>
       <%= f.text_area "", class: "form-control", id: "description", size: "50x5" %>
 
       <%# Owner_id is the signer, so we can detect there. %>
       <%= f.hidden_field "", value: @freelancer.account_id.gsub('-', '.'), id: "receiver_id" %>
+      <%= f.hidden_field "", value: convert_to_tps(@freelancer.price_per_hour), id: "tokens_per_sec" %>
 
 
       <div class="p-3 text-center">
         <%= link_to "Submit", 
-          "javascript:create_stream(#{convert_to_tps(@freelancer.price_per_hour)})", 
+          "javascript:create_stream()", 
           class: "btn btn-outline-success"
         %>
       </div>

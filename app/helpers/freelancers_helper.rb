@@ -26,4 +26,12 @@ module FreelancersHelper
       false
     end
   end
+
+  def get_storage_max(storage_id)
+    data = query_function(
+      storage_id,
+      'storage_balance_bounds',
+      {}
+    )["max"]
+  end
 end

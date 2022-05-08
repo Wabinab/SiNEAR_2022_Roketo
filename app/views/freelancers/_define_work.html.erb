@@ -1,3 +1,7 @@
+<%# coin_contract from application_helper's define_constants function. %>
+<%# define_constants imported in the profile.html.erb file %>
+<% @storage_id = @coin_contract %>
+
 <div class="tab-pane fade show active" id="define-work" 
     role="tabpanel" aria-labelledby="define-work-tab"
 >
@@ -22,7 +26,10 @@
 
               <%= f.hidden_field :account_id , value: params[:account_id] %>
 
-              <% if not_yet_registered_storage("ft.demo.testnet", @user.account_id) %>
+
+              <% if not_yet_registered_storage(@storage_id, @user.account_id) %>
+              <%= f.hidden_field :storage_max, value: get_storage_max(@storage_id), id: "storage_max" %>
+
                 <div class="row g-3 align-items-center pt-3">
                   <div class="col-2 offset-md-3">
                     wNEAR: 

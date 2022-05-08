@@ -48,10 +48,10 @@ function login() {
 }
 
 
-function create_stream(tokens_per_sec) {
-  var amount = document.getElementById("amount").value;
+function create_stream(amount) {
   var description = document.getElementById("description").value;
   var receiver_id = document.getElementById("receiver_id").value;
+  var tokens_per_sec = parseInt(document.getElementById("tokens_per_sec").value);
   // var tokens_per_sec = Big(document.getElementById("tokens_per_sec").value).toFixed();
 
   var amount_parsed = utils.format.parseNearAmount(amount);

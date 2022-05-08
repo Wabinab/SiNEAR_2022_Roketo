@@ -24,8 +24,8 @@ module ApplicationHelper
     end
   end
 
-  def yocto_to_near(yoctonear, to_dp=3)
-    one_to_dp = ("1" + "0" * (24 - to_dp)).to_i
+  def yocto_to_near(yoctonear, to_dp=3, token_decimal=24)
+    one_to_dp = ("1" + "0" * (token_decimal - to_dp)).to_i
     mNEAR = yoctonear.to_i / one_to_dp
 
 
@@ -36,7 +36,12 @@ module ApplicationHelper
     first_n = (mNEAR.to_i / ("1" + "0" * to_dp).to_i).to_s
     first_n ||= "0"
 
-    last_n = mNEAR.to_s
+    if first_n.length > 1
+      last_n = mNEAR.to_s[first_n.length..-1]
+    else
+      last_n = mNEAR.to_s
+    end
+
     last_n ||= "0"
     if last_n.length < to_dp
       last_n = ("0" * (to_dp - last_n.length)) + last_n
