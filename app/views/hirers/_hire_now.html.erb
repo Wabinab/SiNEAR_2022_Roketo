@@ -27,11 +27,16 @@
       <%= f.hidden_field "", value: convert_to_tps(@freelancer.price_per_hour), id: "tokens_per_sec" %>
 
 
-      <div class="p-3 text-center">
-        <%= link_to "Submit", 
-          "javascript:create_stream()", 
-          class: "btn btn-outline-success"
-        %>
+      <div data-controller="hire">
+
+        <div class="p-3 text-center">
+          <%# hire controller's "hire" function. %>
+          <a href="#" data-action="hire#hire" 
+          class="btn btn-outline-success">
+            Submit
+          </a>
+        </div>
+
       </div>
     <% end %>
   </div>

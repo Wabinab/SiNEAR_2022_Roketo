@@ -22,7 +22,7 @@
   <div class="d-flex align-items-center justify-content-center">
     <div class="card" style="width: 26rem;">
       <div class="card-body">
-        <p>Note: Only updates once you pause and start stream.</p>
+        <p>Note: Only updates if you interact with the buttons below.</p>
         <h3 class="card-title text-info text-center pt-3">
           Balance: <%= yocto_to_near(@token_info["balance"]).to_f %>
         </h3>
@@ -35,6 +35,11 @@
         <h5 class="card-subtitle <%= color_by_status(@status) %> text-center">
           Status: <%= @token_info["status"] %>
         </h5>
+
+        <div class="card-subtitle pt-3 text-center">
+          Estimated time left: <%= estimate_time @token_info  %>
+        </div>
+
 
         <%# Disable buttons depending on status %>
         <div class="text-center p-4 px-2 gap-3">
@@ -70,5 +75,7 @@
     </div>
   </div>
 </div>
+
+<%= @token_info %>
 
 

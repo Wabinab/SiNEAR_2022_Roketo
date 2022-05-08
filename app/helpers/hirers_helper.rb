@@ -51,4 +51,15 @@ module HirersHelper
       {}
     )
   end
+
+  # https://stackoverflow.com/questions/28908214/converting-seconds-into-hours-only-using-ruby-in-built-function-except-the-day
+  def seconds_to_hms(sec)
+    "%02d:%02d:%02d" % [sec / 3600, sec / 60 % 60, sec % 60]
+  end
+
+  def estimate_time(token_info)
+    balance = yocto_to_near(token_info["balance"], 5).to_f 
+    tps = yocto_to_near(token_info["tokens_per_sec"], 5).to_f
+    seconds_to_hms balance/tps
+  end
 end

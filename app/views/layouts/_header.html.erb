@@ -38,56 +38,43 @@
         <li class="nav-item">
           <div data-controller="nav">
             <div class="dropdown" data-nav-target="dropdown">
-              <button class="navbar-toggler"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#navbarSelector"
-                      aria-controls="navbarSelector"
+              <ul class="navbar-nav" data-controller="nav">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" 
+                      href="#" 
+                      id="navbarSelectorInner" 
+                      role="button" 
+                      data-bs-toggle="dropdown" 
                       aria-expanded="false"
-                      aria-label="Toggle navigation"
-              >
-                <span class="navbar-toggler-icon"></span>
-              </button>
+                  >
+                  Menu
+                  </a>
 
-              <div class="collapse navbar-collapse" id="navbarSelector">
-                <ul class="navbar-nav" data-controller="nav">
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" 
-                        href="#" 
-                        id="navbarSelectorInner" 
-                        role="button" 
-                        data-bs-toggle="dropdown" 
-                        aria-expanded="false"
-                    >
-                    Menu
-                    </a>
+                  <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" 
+                      aria-labelledby="navbarSelectorInner"
+                  >
+                    <li>
+                      <a href="#" 
+                      data-nav-target="freelancer"
+                      class="dropdown-item"
+                      >
+                        Freelancer
+                      </a>
+                    </li>
 
-                    <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" 
-                        aria-labelledby="navbarSelectorInner"
-                    >
-                      <li>
-                        <a href="#" 
-                        data-nav-target="freelancer"
-                        class="dropdown-item"
-                        >
-                          Freelancer
-                        </a>
-                      </li>
+                    <li>
+                      <a href="#"
+                      data-nav-target="hirer"
+                      class="dropdown-item"
+                      >
+                        Hirer
+                      </a>
+                    </li>
 
-                      <li>
-                        <a href="#"
-                        data-nav-target="hirer"
-                        class="dropdown-item"
-                        >
-                          Hirer
-                        </a>
-                      </li>
-
-                      <li><%= link_to "Search for Freelancers", searches_url, class: "dropdown-item" %></li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
+                    <li><%= link_to "Search for Freelancers", searches_url, class: "dropdown-item" %></li>
+                  </ul>
+                </li>
+              </ul>
 
             </div>
           </div>
