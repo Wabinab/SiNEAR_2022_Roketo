@@ -22,9 +22,42 @@
 
               <%= f.hidden_field :account_id , value: params[:account_id] %>
 
-              <div class="p-3 text-center">
-                <%= f.submit "Submit", class: "btn btn-outline-success" %>
-              </div>
+              <% if not_yet_registered_storage("ft.demo.testnet", @user.account_id) %>
+                <div class="row g-3 align-items-center pt-3">
+                  <div class="col-2 offset-md-3">
+                    wNEAR: 
+                  </div>
+                  <div class="col-4">
+                    <%= link_to "Deposit Storage", "javascript:deposit_storage()", 
+                    class: "btn btn-primary" %>
+                  </div>
+
+                  <div class="col-auto fs-3">
+                    <a tabindex="0" class="btn btn-outline-info btn-circle"
+                    role="button"
+                    data-bs-toggle="popover"
+                    data-bs-trigger="focus"
+                    title="You haven't registered this coin. Please deposit storage to register">
+                      ?
+                    </a>
+                  </div>
+                </div>
+
+                <%# Supposedly should have a controller to toggle "disabled" status
+                  instead of doing as bad as this. 
+                %>
+                <div class="p-3 text-center">
+                  <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" 
+                  title="Deposit Storage before submitting">
+                    <button class="btn btn-outline-success" disabled>Submit</button>
+                  </span>
+                </div>
+              <% else %>
+                <div class="p-3 text-center">
+                  <%= f.submit "Submit", class: "btn btn-outline-success" %>
+                </div>
+              <% end %>
+
             <% end %>
           </div>
         </div>

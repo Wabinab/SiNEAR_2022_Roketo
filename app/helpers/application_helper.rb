@@ -5,6 +5,9 @@ module ApplicationHelper
     @query = NearApi::Query.new(config = @conf)
 
     @contract = 'streaming-r-v2.dcversus.testnet'
+    
+    # Currently hardcoded
+    @coin_contract = 'wrap.testnet'
   end
 
   def query_function(contract=@contract, function_name, metadata)
@@ -21,22 +24,22 @@ module ApplicationHelper
     end
   end
 
-  def yocto_to_near(yoctonear, decimal=3)
-    one_decimal = ("1" + "0" * (24 - decimal)).to_i
-    mNEAR = yoctonear.to_i / one_decimal
+  def yocto_to_near(yoctonear, to_dp=3)
+    one_to_dp = ("1" + "0" * (24 - to_dp)).to_i
+    mNEAR = yoctonear.to_i / one_to_dp
 
 
-    # mNEAR.to_f / ("1" + "0" * decimal).to_i
+    # mNEAR.to_f / ("1" + "0" * to_dp).to_i
     #  If you don't mind scientific notation, cancel everything below
     # and activate the line above. 
 
-    first_n = (mNEAR.to_i / ("1" + "0" * decimal).to_i).to_s
+    first_n = (mNEAR.to_i / ("1" + "0" * to_dp).to_i).to_s
     first_n ||= "0"
 
     last_n = mNEAR.to_s
     last_n ||= "0"
-    if last_n.length < decimal
-      last_n = ("0" * (decimal - last_n.length)) + last_n
+    if last_n.length < to_dp
+      last_n = ("0" * (to_dp - last_n.length)) + last_n
     end
 
     first_n + "." + last_n

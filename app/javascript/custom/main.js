@@ -25,12 +25,12 @@ window.walletConnection = new WalletConnection(near)
 window.accountId = window.walletConnection.getAccountId()
 
 window.wrap_contract = await new Contract(window.walletConnection.account(), nearConfig2.contractName, {
-  changeMethods: ['ft_transfer_call', 'near_deposit'],
+  changeMethods: ['ft_transfer_call', 'near_deposit', 'storage_deposit'],
 })
 
 window.contract = await new Contract(window.walletConnection.account(), nearConfig.contractName, {
   viewMethods: ['get_stream'],
-  changeMethods: ['start_stream', 'pause_stream', 'stop_stream'],
+  changeMethods: ['start_stream', 'pause_stream', 'stop_stream', 'withdraw'],
 })
 
 window.helper_contract = await new Contract(window.walletConnection.account(), nearConfig3.contractName, {
@@ -117,10 +117,39 @@ function stop_stream(stream_id) {
 }
 
 
+function withdraw_stream(stream_id) {
+  window.contract.withdraw(
+    {
+      "stream_ids": [stream_id]
+    },
+    200000000000000, // 200 TGas
+    1
+  )
+}
+
+
+function deposit_storage() {
+  var account_id = window.walletConnection.getAccountId();
+  var storage_max = document.getElementById("storage_max").value;
+
+  // Use JSON RPC calls and pass in contract account id, if need to change
+  // rather than do it this way. 
+  window.wrap_contract.storage_deposit(
+    {
+      "account_id": account_id,
+    },
+    200000000000000,
+    storage_max
+  );
+}
+
+
 
 window.create_stream = create_stream
 window.start_stream = start_stream
 window.pause_stream = pause_stream
 window.stop_stream = stop_stream
+window.withdraw_stream = withdraw_stream
+window.deposit_storage = deposit_storage
 window.logout = logout
 window.login = login

@@ -7,6 +7,7 @@
 <%= form_with(model: @user, remote: true) do |f| %>
   <%= f.hidden_field "", value: @status, id: "status" %>
   <%= f.hidden_field "", value: @stream_id, id: "stream_id" %>
+  <%= f.hidden_field "", value: @token_info["owner_id"], id: "stream_owner" %>
 <% end %>
 
 <div class="row">
@@ -37,30 +38,30 @@
 
         <%# Disable buttons depending on status %>
         <div class="text-center p-4 px-2 gap-3">
-          <div data-controller="stream" 
-              data-stream-current-value="<%= @status %>"
-              data-stream-streamId-value="<%= params[:stream_id] %>"
-          >
+          <div data-controller="stream">
             <button data-action="stream#start_stream" 
             data-stream-target="start"
-            class="btn btn-success">
+            class="btn btn-outline-success">
               Start
             </button>
 
             <button data-action="stream#pause_stream"
             data-stream-target="pause"
-            class="btn btn-warning">
+            class="btn btn-outline-warning">
               Pause
             </button>
 
             <button data-action="stream#stop_stream"
             data-stream-target="stop"
-            class="btn btn-danger">
+            class="btn btn-outline-danger">
               Stop
             </button>
 
-            <%# Freelancer cannot see stop button. %>
-            <%# Add withdraw button later. %>
+            <button data-action="stream#withdraw_stream"
+            data-stream-target="withdraw"
+            class="btn btn-outline-secondary">
+              Withdraw
+            </button>
           </div>
           
         </div>
