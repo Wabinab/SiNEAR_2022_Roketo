@@ -31,11 +31,16 @@
 
         <div class="p-3 text-center">
           <%# hire controller's "hire" function. %>
-          <a href="#" data-action="hire#hire" 
+          <button data-action="hire#hire" 
+          data-hire-target="submit"
           class="btn btn-outline-success">
             Submit
-          </a>
+          </button>
         </div>
+
+        <strong> 
+          <p data-hire-target="tooltip" class="text-danger"></p>
+        </strong>
 
       </div>
     <% end %>

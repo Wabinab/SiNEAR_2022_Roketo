@@ -1,5 +1,11 @@
 class FreelancersController < ApplicationController
   def profile
+    @freelancer = Freelancer.find_by(account_id: search_params[:account_id])
+
+    # For auto filling form
+    # if @current_user.nil?
+    #   @current_user = Freelancer.new
+    # end
   end
 
   def create
@@ -11,8 +17,7 @@ class FreelancersController < ApplicationController
     else 
       flash.now[:success] = "Updated profile"
       @freelancer = Freelancer.find_by(account_id: freelancer_params[:account_id])
-      @freelancer.message = freelancer_params[:message]
-      @freelancer.price_per_hour = freelancer_params[:price_per_hour]
+      @freelancer.update(freelancer_params)
       @freelancer.save
       render 'profile'
     end
@@ -20,7 +25,7 @@ class FreelancersController < ApplicationController
 
   private
     def freelancer_params 
-      params.permit(:message, :price_per_hour, :account_id)
+      params.permit(:message, :price_per_hour, :account_id, :for_hire)
     end
 
     def search_params 

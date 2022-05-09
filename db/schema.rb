@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_06_061708) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_09_062700) do
   create_table "freelancers", force: :cascade do |t|
     t.string "account_id"
     t.string "message"
     t.float "price_per_hour"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "for_hire"
     t.index ["account_id"], name: "index_freelancers_on_account_id", unique: true
   end
 
