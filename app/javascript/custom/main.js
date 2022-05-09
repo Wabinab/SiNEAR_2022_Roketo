@@ -34,7 +34,7 @@ window.contract = await new Contract(window.walletConnection.account(), nearConf
 })
 
 window.helper_contract = await new Contract(window.walletConnection.account(), nearConfig3.contractName, {
-  changeMethods: ['stop_by_owner'],
+  changeMethods: ['add_stream_id', 'remove_strema_id'],
 })
 
 
@@ -144,6 +144,28 @@ function deposit_storage() {
 }
 
 
+function add_stream_id(stream_id) {
+  window.helper_contract.add_stream_id(
+    {
+      "stream_id": stream_id
+    },
+    30000000000000, // 30 TGas,
+    0
+  );
+}
+
+
+function remove_stream_id(stream_id) {
+  window.helper_contract.remove_strema_id(
+    {
+      "stream_id": stream_id
+    },
+    30000000000000,  // 30 Tgas
+    0
+  );
+}
+
+
 
 window.create_stream = create_stream
 window.start_stream = start_stream
@@ -151,5 +173,7 @@ window.pause_stream = pause_stream
 window.stop_stream = stop_stream
 window.withdraw_stream = withdraw_stream
 window.deposit_storage = deposit_storage
+window.add_stream_id = add_stream_id
+window.remove_stream_id = remove_stream_id
 window.logout = logout
 window.login = login

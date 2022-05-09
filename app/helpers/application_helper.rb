@@ -5,6 +5,7 @@ module ApplicationHelper
     @query = NearApi::Query.new(config = @conf)
 
     @contract = 'streaming-r-v2.dcversus.testnet'
+    @helper_contract = 'roketo_helper.wabinab.testnet'
     
     # Currently hardcoded
     @coin_contract = 'wrap.testnet'

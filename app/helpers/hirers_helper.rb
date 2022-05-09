@@ -1,3 +1,5 @@
+require 'set'
+
 module HirersHelper
   def convert_to_tps(price_per_hour)
     one_near = 1000000000000000000000000
@@ -61,5 +63,36 @@ module HirersHelper
     balance = yocto_to_near(token_info["balance"], 5).to_f 
     tps = yocto_to_near(token_info["tokens_per_sec"], 5).to_f
     seconds_to_hms balance/tps
+  end
+
+
+  def get_from_database(account_id, stream_id)
+    query_function(
+      @helper_contract,
+      'get_stream_id',
+      {
+        "account_id": account_id
+      }
+    ).include? @stream_id
+  end
+
+  def get_stopped_by_owner(account_id)
+    list_of_tokens = query_function(
+      @helper_contract,
+      'get_stream_id',
+      {
+        "account_id": account_id
+      }
+    )
+
+    array = []
+
+    list_of_tokens.each do |t|
+      array.push(
+        get_stream(t)
+      )
+    end
+
+    array
   end
 end

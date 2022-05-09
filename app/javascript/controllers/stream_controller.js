@@ -11,7 +11,6 @@ export default class extends Controller {
     this.streamOwnerValue = document.getElementById("stream_owner").value;
     this.currentAccValue = window.walletConnection.getAccountId();
     this.render_buttons()
-    window.streamId = this.streamIdValue;
   }
 
   start_stream() {

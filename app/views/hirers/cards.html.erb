@@ -8,6 +8,12 @@
   <%= f.hidden_field "", value: @status, id: "status" %>
   <%= f.hidden_field "", value: @stream_id, id: "stream_id" %>
   <%= f.hidden_field "", value: @token_info["owner_id"], id: "stream_owner" %>
+
+  <%= f.hidden_field "", value: get_from_database(@token_info['owner_id'], @stream_id),
+  id: "remove_value" %>
+  <% if @status["Finished"] %>
+    <%= f.hidden_field "", value: @status["Finished"]["reason"], id: "reason" %>
+  <% end %>
 <% end %>
 
 <div class="row">
@@ -76,6 +82,22 @@
   </div>
 </div>
 
-<%= @token_info %>
+<div data-controller="stoppedbyowner">
+  <div data-stoppedbyowner-target="display" class="col-md-6 offset-md-3 pb-2">
+    <strong><p>This stream is "Stopped by Owner" </p></strong>
+    <p>If this is wrong: (i.e. not stopped by owner but finished naturally, etc reasons),
+    please click the button below to remove from database hence preventing double display.</p>
+
+    <div class="text-center">
+      <button data-action="stoppedbyowner#add_or_remove"
+      data-stoppedbyowner-target="button"
+      class="btn btn-secondary"
+      id="removal_button">
+        Remove from database
+      </button>
+    </div>
+
+  </div>
+</div>
 
 
