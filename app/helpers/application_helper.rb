@@ -19,7 +19,7 @@ module ApplicationHelper
     )["result"]["result"]
 
     if data.nil?
-      {}
+      []
     else
       JSON.parse(data.pack('c*'))
     end
