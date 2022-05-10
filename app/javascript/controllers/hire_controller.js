@@ -6,7 +6,8 @@ export default class extends Controller {
   static values = {amount: String, balance: String, account: String, innerAccount: String}
 
   initialize() {
-    this.balanceValue = document.getElementById("balance").innerText;
+    // this.balanceValue = document.getElementById("balance").innerText;
+    this.setBalance();
     this.accountValue = document.getElementById("receiver_id").value.replaceAll('.', '-');
     this.innerAccountValue = window.walletConnection.getAccountId().replaceAll('.', '-')
     this.enableSubmit()
@@ -26,6 +27,19 @@ export default class extends Controller {
     }
     
     this.enableSubmit()
+  }
+
+  setBalance() {
+    window.wrap_contract.ft_balance_of(
+      {
+        "account_id": window.walletConnection.getAccountId()
+      }
+    ).then((value) => {
+      var new_value = window.yocto_to_near(value);
+      document.getElementById("balance").innerText = new_value;
+      document.getElementById("amount").max = new_value;
+      this.balanceValue = new_value;
+    });
   }
 
   redirectAfter() {

@@ -25,6 +25,7 @@ window.walletConnection = new WalletConnection(near)
 window.accountId = window.walletConnection.getAccountId()
 
 window.wrap_contract = await new Contract(window.walletConnection.account(), nearConfig2.contractName, {
+  viewMethods: ['ft_balance_of'],
   changeMethods: ['ft_transfer_call', 'near_deposit', 'storage_deposit'],
 })
 
@@ -166,6 +167,15 @@ function remove_stream_id(stream_id) {
 }
 
 
+function yocto_to_near(yocto) {
+  var full_value =  parseFloat(utils.format.formatNearAmount(yocto));
+
+  // Always 3DP. 
+  var rounded_down = parseFloat(Math.floor(full_value * 1000) / 1000);
+  return rounded_down.toFixed(3);
+}
+
+
 
 window.create_stream = create_stream
 window.start_stream = start_stream
@@ -175,5 +185,6 @@ window.withdraw_stream = withdraw_stream
 window.deposit_storage = deposit_storage
 window.add_stream_id = add_stream_id
 window.remove_stream_id = remove_stream_id
+window.yocto_to_near = yocto_to_near
 window.logout = logout
 window.login = login
