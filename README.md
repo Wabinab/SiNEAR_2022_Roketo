@@ -1,5 +1,22 @@
 # Spring is NEAR 2022 Challenge 8: Roketo Challenge
 
+## (TBD)
+
+---
+## Playing Outside the Box
+The above mentions when you play "in the box". If you're a hacker and chose to play outside the box, there certainly aren't fully thought-of frontend design. Can't blame, when one design this, one assumes you'll work only within constraints, and ignores "what if" we work outside constraints. It's nothing one care about anyways, 
+unless we're going to deploy to mainnet and requires security check then only it returns to one's concern. 
+
+First, display of active streams. This active stream includes ALL streams that are and aren't created by the frontend. Supposingly we should only display those created by the frontend and not everything. This also means 
+**streams that are created outside will have NO CONFIRMATION that it'll display**. If your page don't show up, it just means it can't be displayed within the box's range. Example, before a fix, someone has a stream that only stream 1 yoctoNEAR
+per second, for lots of NEAR. The value displays is infinity, which Rails cannot perform arithmetic on; hence page refuses to display. Though we hard-fix it by displaying "infinity", it's better to remove it altogether from displaying. Oh well. 
+
+Second, buttons. When one design the buttons, it's "if it's this then we **hide**, else we display;" rather than "if it's this then we **display**, else we hide;" One's design means: the "else" is also exposed to other non-intended people. 
+Although when call the contract will panic; it's not intended to show the buttons to non-eligible people. That isn't designed to. 
+
+And we could see other people's work and transactions; that's fine on public blockchain. If we want specific access only by "authorized people", unfortunately my skills don't allow me to design that yet (one don't know how to do that). 
+
+---
 ## Problem Statement
 Roketo, a crypto streaming service, announces a new challenge to reveal the product’s strongest side – their real-time payments.  
 The task is to create a service application of Roketo for any pay per minute service such as co-working, car parking, equipment rental, etc. The MVP of a service could work partially, but the payment in that service should be done through Roketo and work. Use Roketo streaming smart contract as a payment method in your MVP.  
