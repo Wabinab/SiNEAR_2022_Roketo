@@ -3,9 +3,9 @@ class FreelancersController < ApplicationController
     @freelancer = Freelancer.find_by(account_id: search_params[:account_id])
 
     # For auto filling form
-    # if @current_user.nil?
-    #   @current_user = Freelancer.new
-    # end
+    if @freelancer.nil?
+      @freelancer = Freelancer.new
+    end
   end
 
   def create
