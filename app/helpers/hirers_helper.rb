@@ -56,7 +56,11 @@ module HirersHelper
 
   # https://stackoverflow.com/questions/28908214/converting-seconds-into-hours-only-using-ruby-in-built-function-except-the-day
   def seconds_to_hms(sec)
-    "%02d:%02d:%02d" % [sec / 3600, sec / 60 % 60, sec % 60]
+    if sec.finite?
+      "%02d:%02d:%02d" % [sec / 3600, sec / 60 % 60, sec % 60]
+    else
+      sec
+    end
   end
 
   def estimate_time(token_info)

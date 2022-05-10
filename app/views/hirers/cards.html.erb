@@ -20,7 +20,8 @@
   <div class="col text-center">
     <h1><%= @token_info["receiver_id"] %></h1>
     <h3>Stream ID: <%= @stream_id %></h3>
-    
+     <p>Note: Only updates if you interact with the buttons below.
+        And if your value is smaller than the mentioned decimal places, it'll show zero.</p>
   </div>
 </div>
 
@@ -28,13 +29,12 @@
   <div class="d-flex align-items-center justify-content-center">
     <div class="card" style="width: 26rem;">
       <div class="card-body">
-        <p>Note: Only updates if you interact with the buttons below.</p>
         <h3 class="card-title text-info text-center pt-3">
-          Balance: <%= yocto_to_near(@token_info["balance"]).to_f %>
+          Balance (3dp): <%= yocto_to_near(@token_info["balance"]).to_f %>
         </h3>
 
         <h4 class="card-subtitle text-primary text-center pt-3 pb-3">
-          Tokens per second: 
+          Tokens per second (5dp): 
           <%= yocto_to_near(@token_info["tokens_per_sec"], 5) %>
         </h4>
 
