@@ -11,6 +11,12 @@ First, display of active streams. This active stream includes ALL streams that a
 **streams that are created outside will have NO CONFIRMATION that it'll display**. If your page don't show up, it just means it can't be displayed within the box's range. Example, before a fix, someone has a stream that only stream 1 yoctoNEAR
 per second, for lots of NEAR. The value displays is infinity, which Rails cannot perform arithmetic on; hence page refuses to display. Though we hard-fix it by displaying "infinity", it's better to remove it altogether from displaying. Oh well. 
 
+Solution? Add "stream_id" to a helper contract after calling function. This requires **two calls separately** instead of done in a single click; because one cannot solve this problem. 
+- From the (helper) smart contract side, if we have a function that we initially deposit and make the call; how do we use "view functions" in smart contract? Only if we can use view functions could we solve this issue. 
+- From the frontend side: **any `#[payable]` smart contract calls cannot use `.then()`**. As far as one tried, even a simple `console.log()`, if it has redirect to the page requiring you to "accept", all `.then()` would fail. At least, that's one's experimentation. 
+
+Until either one of these solved, we are stuck with 2 buttons, one click after another. 
+
 Second, buttons. When one design the buttons, it's "if it's this then we **hide**, else we display;" rather than "if it's this then we **display**, else we hide;" One's design means: the "else" is also exposed to other non-intended people. 
 Although when call the contract will panic; it's not intended to show the buttons to non-eligible people. That isn't designed to. 
 
