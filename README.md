@@ -1,9 +1,14 @@
 # Spring is NEAR 2022 Challenge 8: Roketo Challenge
 
-## (TBD)
+## Introduction
+For the frontend, just check the youtube videos: 
+    Part 1: https://youtu.be/Z_dzdQct2KA
+    Part 2: https://youtu.be/IY1IAkSBs34
+    
+The backend is as simple as the "greeting" contract, and you can understand it yourself by looking at it. 
 
 ---
-## Playing Outside the Box
+## Design weaknesses
 The above mentions when you play "in the box". If you're a hacker and chose to play outside the box, there certainly aren't fully thought-of frontend design. Can't blame, when one design this, one assumes you'll work only within constraints, and ignores "what if" we work outside constraints. It's nothing one care about anyways, 
 unless we're going to deploy to mainnet and requires security check then only it returns to one's concern. 
 
